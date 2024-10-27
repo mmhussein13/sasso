@@ -1,0 +1,320 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+
+<!-- Breadcrumb Section Start -->
+<section class="breadcrumb-section pt-0">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-contain">
+                    <h2>Shop Category</h2>
+                    <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fa-solid fa-house"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">Shop Category</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+    <!-- Shop Section Start -->
+    <section class="section-b-space shop-section">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-custom-3">
+                    <div class="left-box wow fadeInUp">
+                        <div class="shop-left-sidebar">
+                            <ul class="nav nav-pills mb-3 custom-nav-tab" id="pills-tab" role="tablist">
+                                {% for category in links %}
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-{{ category.slug }}" data-bs-toggle="pill" data-url="{{ category.get_url }}"
+                                        data-bs-target="#pills-{{ category.slug }}" type="button" role="tab">{{ category.category_name }}
+                                        <img src="{{ category.cat_image.url }}" class="blur-up lazyload"
+                                            alt=""></button>
+                                </li>
+                                {% endfor%}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-custom-">
+                    <div class="show-button">
+                        <div class="filter-button d-inline-block d-lg-none">
+                            <a><i class="fa-solid fa-filter"></i> Filter Menu</a>
+                        </div>
+
+                        <div class="top-filter-menu">
+                            <div class="category-dropdown">
+                                <h5 class="text-content">Sort By :</h5>
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown">
+                                    <span>Most Popular</span> <i class="fa-solid fa-angle-down"></i><br>
+                                    {% if product_count <= 1 %}
+                                        <h5 class="text-content">{{ product_count }} Item found</h5>
+                                    {% else %}
+                                        <h5 class="text-content">{{ product_count }} Items found</h5>
+                                    {% endif %}
+                                </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" id="pop" href="javascript:void(0)">Popularity</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="low" href="javascript:void(0)">Low - High
+                                                Price</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="high" href="javascript:void(0)">High - Low
+                                                Price</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="rating" href="javascript:void(0)">Average
+                                                Rating</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="aToz" href="javascript:void(0)">A - Z Order</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="zToa" href="javascript:void(0)">Z - A Order</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="off" href="javascript:void(0)">% Off - Hight To
+                                                Low</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="grid-option d-none d-md-block">
+                                <ul>
+                                    <li class="three-grid">
+                                        <a href="javascript:void(0)">
+                                            <img src="{% static 'assets/svg/grid-3.svg' %}" class="blur-up lazyload" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="grid-btn d-xxl-inline-block d-none active">
+                                        <a href="javascript:void(0)">
+                                            <img src="{% static 'assets/svg/grid-4.svg' %}"
+                                                class="blur-up lazyload d-lg-inline-block d-none" alt="">
+                                            <img src="{% static 'assets/svg/grid.svg' %}"
+                                                class="blur-up lazyload img-fluid d-lg-none d-inline-block" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="list-btn">
+                                        <a href="javascript:void(0)">
+                                            <img src="{% static 'assets/svg/list.svg' %}" class="blur-up lazyload" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                    class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
+                    <div>
+                        {% if products %}
+                        {% for product in products %}
+                        <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.65s">
+                            <div class="product-header">
+                                <div class="product-image">
+                                    <a href="{{ product.get_url }}">
+                                        <img src="{{ product.images.url }}"
+                                            class="img-fluid blur-up lazyload" alt="">
+                                    </a>
+
+                                    <ul class="product-option">
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                data-bs-target="#view">
+                                                <i data-feather="eye"></i>
+                                            </a>
+                                        </li>
+
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
+                                            <a href="compare.html">
+                                                <i data-feather="refresh-cw"></i>
+                                            </a>
+                                        </li>
+
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                            <a href="wishlist.html" class="notifi-wishlist">
+                                                <i data-feather="heart"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="product-footer">
+                                <div class="product-detail">
+                                    <!--<span class="span-name">Vegetable</span>-->
+                                    <a href="{{ product.get_url }}">
+                                        <h5 class="name">{{ product.product_name }}</h5>
+                                    </a>
+                                    <p class="text-content mt-1 mb-2 product-content">{{ product.description }}</p>
+                                    <div class="product-rating mt-2">
+                                        <ul class="rating">
+                                            <li>
+                                                <i data-feather="star" class="fill"></i>
+                                            </li>
+                                            <li>
+                                                <i data-feather="star" class="fill"></i>
+                                            </li>
+                                            <li>
+                                                <i data-feather="star"></i>
+                                            </li>
+                                            <li>
+                                                <i data-feather="star"></i>
+                                            </li>
+                                            <li>
+                                                <i data-feather="star"></i>
+                                            </li>
+                                        </ul>
+                                        <span>(2.4)</span>
+                                    </div>
+                                    <!--<h6 class="unit">350 G</h6>-->
+                                    <h5 class="price"><span class="theme-color">UGX {{ product.price }}</span> 
+                                    </h5>
+                                    {% if single_product.stock <= 0 %}
+                                        <h5>Out of Stock</h5>
+                                    {% else %}
+                                    <div class="add-to-cart-box bg-white">
+                                        <button class="btn btn-add-cart addcart-button" onclick="location.href = '{{ product.get_url }}';"
+                                        >View Details
+                                            <span class="add-icon bg-light-gray">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </span>
+                                        </button>
+                                    {% endif %}
+                                        <div class="cart_qty qty-box">
+                                            <div class="input-group bg-white">
+                                                <button type="button" class="qty-left-minus bg-gray"
+                                                    data-type="minus" data-field="">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <input class="form-control input-number qty-input" type="text"
+                                                    name="quantity" value="0">
+                                                <button type="button" class="qty-right-plus bg-gray"
+                                                    data-type="plus" data-field="">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div>{% endfor %}  
+                        {% else %}
+                        <div>
+                            <div class="image-404">
+                                <img src="{% static 'assets/images/inner-page/404.png' %}" class="img-fluid blur-up lazyload" alt="">
+                            </div><br>
+                            <h2 class="text-content">No results found.</h2>
+                            <button onclick="location.href = '{% url 'store' %}';"
+                            class="btn btn-md text-white theme-bg-color mt-4 mx-auto">Back To Shop</button>
+                        </div>
+                        {% endif %}
+                        
+                </div>
+
+                <nav class="custom-pagination">
+                    {% if products.has_other_pages %}
+                    <ul class="pagination justify-content-center">
+                        {% if products.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ products.previous_page_number }}" tabindex="-1">
+                                <i class="fa-solid fa-angles-left"></i>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">
+                                <i class="fa-solid fa-angles-left"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% for i in products.paginator.page_range %}
+                            {% if products.number == i %}
+                            <li class="page-item active">
+                                <a class="page-link" href="javascript:void(0)">{{ i }}</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if products.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ products.next_page_number }}">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="javascript:void(0)">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Shop Section End -->
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-link');
+    
+            navButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.classList.add('active');
+                });
+    
+                button.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('selected')) {
+                        this.classList.remove('active');
+                    }
+                });
+    
+                button.addEventListener('click', function() {
+                    // Remove 'selected' class from all buttons
+                    navButtons.forEach(nav => {
+                        nav.classList.remove('selected');
+                        nav.classList.remove('active'); // Optional: remove hover effect on click
+                    });
+    
+                    // Add 'selected' class to the clicked button
+                    this.classList.add('selected');
+                    this.classList.add('active'); // Keep the active state after click
+    
+                    // Redirect to the URL stored in data-url
+                    window.location.href = this.dataset.url;
+                });
+            });
+        });
+    </script>
+
+    {% endblock content %}
