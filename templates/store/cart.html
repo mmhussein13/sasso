@@ -38,17 +38,18 @@
                         <div class="table-responsive-xl">
                             <table class="table">
                                 <tbody>
+                                    {% for cart_item in cart_items %}
                                     <tr class="product-box-contain">
                                         <td class="product-detail">
                                             <div class="product border-0">
                                                 <a href="product-left-thumbnail.html" class="product-image">
-                                                    <img src="{% static 'assets/images/vegetable/product/3.png' %}"
+                                                    <img src="{{ cart_item.product.images.url }}"
                                                         class="img-fluid blur-up lazyload" alt="">
                                                 </a>
                                                 <div class="product-detail">
                                                     <ul>
                                                         <li class="name">
-                                                            <a href="product-left-thumbnail.html">Onion</a>
+                                                            <a href="product-left-thumbnail.html">{{ cart_item.product.product_name }}</a>
                                                         </li>
 
                                                         <li class="text-content"><span class="text-title">Sold
@@ -57,39 +58,6 @@
                                                         <li class="text-content"><span
                                                                 class="text-title">Quantity</span> - 750 g</li>
 
-                                                        <li>
-                                                            <h5 class="text-content d-inline-block">Price :</h5>
-                                                            <span>UGX 35.10</span>
-                                                            <span class="text-content">UGX 45.68</span>
-                                                        </li>
-
-                                                        <li>
-                                                            <h5 class="saving theme-color">Saving : UGX 20.68</h5>
-                                                        </li>
-
-                                                        <li class="quantity">
-                                                            <div class="quantity-price">
-                                                                <div class="cart_qty">
-                                                                    <div class="input-group">
-                                                                        <button type="button" class="btn qty-left-minus"
-                                                                            data-type="minus" data-field="">
-                                                                            <i class="fa fa-minus ms-0"></i>
-                                                                        </button>
-                                                                        <input
-                                                                            class="form-control input-number qty-input"
-                                                                            type="text" name="quantity" value="0">
-                                                                        <button type="button" class="btn qty-right-plus"
-                                                                            data-type="plus" data-field="">
-                                                                            <i class="fa fa-plus ms-0"></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <h5>Total: UGX 67.36</h5>
-                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -97,8 +65,8 @@
 
                                         <td class="price">
                                             <h4 class="table-title text-content">Price</h4>
-                                            <h5>UGX 67.36 <del class="text-content">UGX 96.58</del></h5>
-                                            <h6 class="theme-color">You Save : UGX 29.22</h6>
+                                            <h5>UGX {{ cart_item.product.price }} </h5>
+                                            <!--<h6 class="theme-color">You Save : UGX 29.22</h6>-->
                                         </td>
 
                                         <td class="quantity">
@@ -111,8 +79,9 @@
                                                             <i class="fa fa-minus ms-0"></i>
                                                         </button>
                                                         <input class="form-control input-number qty-input" type="text"
-                                                            name="quantity" value="0">
-                                                        <button type="button" class="btn qty-right-plus"
+                                                            name="quantity" value="{{ cart_item.quantity }}">
+                                                        <button onclick="location.href='{% url 'add_cart' cart_item.product.id %}';" 
+                                                            type="button" class="btn qty-right-plus"
                                                             data-type="plus" data-field="">
                                                             <i class="fa fa-plus ms-0"></i>
                                                         </button>
@@ -123,7 +92,7 @@
 
                                         <td class="subtotal">
                                             <h4 class="table-title text-content">Total</h4>
-                                            <h5>UGX 67.36</h5>
+                                            <h5>UGX {{ cart_item.sub_total }}</h5>
                                         </td>
 
                                         <td class="save-remove">
@@ -132,6 +101,7 @@
                                             <a class="remove close_button" href="javascript:void(0)">Remove</a>
                                         </td>
                                     </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -156,7 +126,7 @@
                             <ul>
                                 <li>
                                     <h4>Subtotal</h4>
-                                    <h4 class="price">UGX 125.65</h4>
+                                    <h4 class="price">UGX {{ total }}</h4>
                                 </li>
 
                                 <li>
@@ -166,6 +136,10 @@
 
                                 <li class="align-items-start">
                                     <h4>Shipping</h4>
+                                    <h4 class="price text-end">UGX 6.90</h4>
+                                </li>
+                                <li class="align-items-start">
+                                    <h4>Tax</h4>
                                     <h4 class="price text-end">UGX 6.90</h4>
                                 </li>
                             </ul>
@@ -186,7 +160,7 @@
                                 </li>
 
                                 <li>
-                                    <button onclick="location.href = 'index.html';"
+                                    <button onclick="location.href = '{% url 'store' %}';"
                                         class="btn btn-light shopping-button text-dark">
                                         <i class="fa-solid fa-arrow-left-long"></i>Return To Shopping</button>
                                 </li>
