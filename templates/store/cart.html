@@ -74,7 +74,8 @@
                                             <div class="quantity-price">
                                                 <div class="cart_qty">
                                                     <div class="input-group">
-                                                        <button type="button" class="btn qty-left-minus"
+                                                        <button onclick="location.href='{% url 'remove_cart' cart_item.product.id %}';" 
+                                                        type="button" class="btn qty-left-minus"
                                                             data-type="minus" data-field="">
                                                             <i class="fa fa-minus ms-0"></i>
                                                         </button>
@@ -98,7 +99,7 @@
                                         <td class="save-remove">
                                             <h4 class="table-title text-content">Action</h4>
                                             <a class="save notifi-wishlist" href="javascript:void(0)">Save for later</a>
-                                            <a class="remove close_button" href="javascript:void(0)">Remove</a>
+                                            <a class="remove close_button" href="{% url 'remove_cart_item' cart_item.product.id %}">Remove</a>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -140,7 +141,7 @@
                                 </li>
                                 <li class="align-items-start">
                                     <h4>Tax</h4>
-                                    <h4 class="price text-end">UGX 6.90</h4>
+                                    <h4 class="price text-end">UGX {{ tax }}</h4>
                                 </li>
                             </ul>
                         </div>
@@ -148,7 +149,7 @@
                         <ul class="summery-total">
                             <li class="list-total border-top-0">
                                 <h4>Total (UGX)</h4>
-                                <h4 class="price theme-color">UGX 132.58</h4>
+                                <h4 class="price theme-color">UGX {{ grand_total }}</h4>
                             </li>
                         </ul>
 
