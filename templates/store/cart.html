@@ -34,6 +34,26 @@
         <div class="container-fluid-lg">
             <div class="row g-sm-5 g-3">
                 <div class="col-xxl-9">
+                    {% if not cart_items %}
+                    <div class="col-xxl-3">
+                        <div class="summery-box p-sticky">
+                            <div class="summery-header">
+                                <h2>Your shopping Cart is Empty!</h2><br>
+                            </div>
+                            <div class="summery-contain">
+                                <div class="button-group cart-button">
+                                    <ul>
+                                        <li>
+                                            <button onclick="location.href = '{% url 'store' %}';"
+                                            class="btn btn-light shopping-button text-dark">
+                                            Continue Shopping</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
                     <div class="cart-table">
                         <div class="table-responsive-xl">
                             <table class="table">
@@ -42,14 +62,14 @@
                                     <tr class="product-box-contain">
                                         <td class="product-detail">
                                             <div class="product border-0">
-                                                <a href="product-left-thumbnail.html" class="product-image">
+                                                <a href="{{ cart_item.product.get_url }}" class="product-image">
                                                     <img src="{{ cart_item.product.images.url }}"
                                                         class="img-fluid blur-up lazyload" alt="">
                                                 </a>
                                                 <div class="product-detail">
                                                     <ul>
                                                         <li class="name">
-                                                            <a href="product-left-thumbnail.html">{{ cart_item.product.product_name }}</a>
+                                                            <a href="{{ cart_item.product.get_url }}">{{ cart_item.product.product_name }}</a>
                                                         </li>
 
                                                         <li class="text-content"><span class="text-title">Sold
@@ -168,6 +188,7 @@
                             </ul>
                         </div>
                     </div>
+                    {% endif%}
                 </div>
             </div>
         </div>
