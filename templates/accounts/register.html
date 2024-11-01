@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content  %}
+
+<!-- Breadcrumb Section Start -->
+<section class="breadcrumb-section pt-0">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-contain">
+                    <h2>Register</h2>
+                    <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'home' %}">
+                                    <i class="fa-solid fa-house"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">Register</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- log in section start -->
+<section class="log-in-section section-b-space">
+    <div class="container-fluid-lg w-100">
+        <div class="row">
+            <div class="col-xxl-2 col-xl-5 col-lg-2 d-lg-block d-none ms-auto">
+                <div class="image-contain">
+                    <img src="{% static 'assets/images/inner-page/sign-up.png' %}" class="img-fluid" alt="">
+                </div>
+            </div>
+
+            <div class="col-xxl-6 col-xl-7 col-lg-6 col-sm-6 mx-auto">
+                <div class="log-in-box">
+                    <div class="log-in-title">
+                        <h3>Welcome To Southnest Farm</h3>
+                        <h4>Create New Account</h4>
+                    </div>
+
+                    <div class="input-box">
+                        {% include "includes/alerts.html" %}
+                        <form action="{% url 'register' %}" method="POST" class="row g-4">
+                            {% csrf_token %}
+                        
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                                    {{ form.first_name }}
+                                        <div class="critical-error" style="color: #ff0000;font-weight: bold;">
+                                        </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                                    {{ form.last_name }}
+                                    <div class="critical-error" style="color: #ff0000;font-weight: bold;">
+                                            {{ form.last_name.errors }}
+                                        </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.email.id_for_label }}">Email Address</label>
+                                    {{ form.email }}
+                                    <div class="critical-error" style="color: #ff0000;font-weight: bold;">
+                                        </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                                    {{ form.phone_number }}
+                                    <div class="critical-error" style="color: #ff0000;font-weight: bold;">
+                                        </div>
+                                    </div>
+                            </div>
+                        
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.password.id_for_label }}">Create Password</label>
+                                    {{ form.password }}
+                                    <div class="critical-error" style="color: #ff0000;font-weight: bold;">
+                                        </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.confirm_password.id_for_label }}">Repeat Password</label>
+                                    {{ form.confirm_password }}
+                                    <div class="critical-error" style="color: #ff0000;font-weight: bold;">
+                                        </div>
+                                </div>
+                            </div><hr>
+                        
+                            {% if form.non_field_errors %}
+                                <div class="critical-error" style="color: #ff0000;font-weight: bold; margin-top: 10px;" id="non-field-errors">
+                                    {{ form.non_field_errors }}
+                                </div>
+                            {% endif %}
+
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="critical-error" style="color: #ff0000;font-weight: bold;" id="{{ field.name }}-errors">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+
+                            <div class="col-12">
+                                <div class="forgot-box">
+                                    <div class="form-check ps-0 m-0 remember-box">
+                                        <input class="checkbox_animated check-box" type="checkbox" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">I agree with <span>Terms</span> and <span>Privacy</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-12">
+                                <button class="btn btn-animation w-100" type="submit">Sign Up</button>
+                            </div>
+                        </form>
+                        
+                    </div>
+
+                    <div class="other-log-in">
+                        <h6>or</h6>
+                    </div>
+
+                    <div class="log-in-button">
+                        <ul>
+                            <li>
+                                <a href="https://accounts.google.com/signin/v2/identifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+                                    class="btn google-button w-100">
+                                    <img src="{% static 'assets/images/inner-page/google.png' %}" class="blur-up lazyload"
+                                        alt="">
+                                    Sign up with Google
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/" class="btn google-button w-100">
+                                    <img src="{% static 'assets/images/inner-page/facebook.png' %}" class="blur-up lazyload"
+                                        alt=""> Sign up with Facebook
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="other-log-in">
+                        <h6></h6>
+                    </div>
+
+                    <div class="sign-up-box">
+                        <h4>Already have an account?</h4>
+                        <a href="{% url 'login' %}">Log In</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-7 col-xl-6 col-lg-6"></div>
+        </div>
+    </div>
+</section>
+<!-- log in section end -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all error messages
+        const nonFieldErrors = document.getElementById('non-field-errors');
+        const fieldErrorElements = document.querySelectorAll('.critical-error');
+
+        // Hide non-field errors after 10 seconds
+        if (nonFieldErrors) {
+            setTimeout(() => {
+                nonFieldErrors.style.display = 'none';
+            }, 10000); // 10 seconds
+        }
+
+        // Hide field-specific errors after 10 seconds
+        fieldErrorElements.forEach(error => {
+            setTimeout(() => {
+                error.style.display = 'none';
+            }, 10000); // 10 seconds
+        });
+    });
+</script>
+
+
+{% endblock content  %}

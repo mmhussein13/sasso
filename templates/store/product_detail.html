@@ -73,203 +73,200 @@
                 </div>
 
                 <div class="col-xl-6">
-                    <div class="right-box-contain p-sticky wow fadeInUp">
-                        <h6 class="offer-top">30% Off</h6>
-                        <h2 class="name">{{ single_product.product_name }}</h2>
-                        <div class="price-rating">
-                            <h3 class="theme-color price">UGX {{ single_product.price }} <span
-                                    class="offer theme-color">(8% off)</span></h3>
-                            <div class="product-rating custom-rate">
-                                <ul class="rating">
+                    <form action="{% url 'add_cart' single_product.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="right-box-contain p-sticky wow fadeInUp">
+                            <h6 class="offer-top">30% Off</h6>
+                            <h2 class="name">{{ single_product.product_name }}</h2>
+                            <div class="price-rating">
+                                <h3 class="theme-color price">UGX {{ single_product.price }} <span
+                                        class="offer theme-color">(8% off)</span></h3>
+                                <div class="product-rating custom-rate">
+                                    <ul class="rating">
+                                        <li>
+                                            <i data-feather="star" class="fill"></i>
+                                        </li>
+                                        <li>
+                                            <i data-feather="star" class="fill"></i>
+                                        </li>
+                                        <li>
+                                            <i data-feather="star" class="fill"></i>
+                                        </li>
+                                        <li>
+                                            <i data-feather="star" class="fill"></i>
+                                        </li>
+                                        <li>
+                                            <i data-feather="star"></i>
+                                        </li>
+                                    </ul>
+                                    <span class="review">23 Customer Review</span>
+                                </div>
+                            </div>
+
+                            <div class="product-contain">
+                                <p>{{ single_product.description }}</p>
+                            </div>
+
+                            <div class="product-package">
+                                <div class="product-title">
+                                    <h4>Chose Color</h4>
+                                </div>
+                                <select name="color" class="form-control" required>
+                                    <option value="disabled selected">Select</option>
+                                    {% for i in single_product.variation_set.colors %}
+                                    <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="product-package">
+                                <div class="product-title">
+                                    <h4>Chose Size</h4>
+                                </div>
+                                <select name="size" class="form-control">
+                                    <option value="disabled selected">Select</option>
+                                    {% for i in single_product.variation_set.sizes %}
+                                        <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="time deal-timer product-deal-timer mx-md-0 mx-auto" id="clockdiv-1" data-hours="1"
+                                data-minutes="2" data-seconds="3">
+                                <div class="product-title">
+                                    <h4>Hurry up! Sales Ends In</h4>
+                                </div>
+                                <ul>
                                     <li>
-                                        <i data-feather="star" class="fill"></i>
+                                        <div class="counter d-block">
+                                            <div class="days d-block">
+                                                <h5></h5>
+                                            </div>
+                                            <h6>Days</h6>
+                                        </div>
                                     </li>
                                     <li>
-                                        <i data-feather="star" class="fill"></i>
+                                        <div class="counter d-block">
+                                            <div class="hours d-block">
+                                                <h5></h5>
+                                            </div>
+                                            <h6>Hours</h6>
+                                        </div>
                                     </li>
                                     <li>
-                                        <i data-feather="star" class="fill"></i>
+                                        <div class="counter d-block">
+                                            <div class="minutes d-block">
+                                                <h5></h5>
+                                            </div>
+                                            <h6>Min</h6>
+                                        </div>
                                     </li>
                                     <li>
-                                        <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                        <i data-feather="star"></i>
+                                        <div class="counter d-block">
+                                            <div class="seconds d-block">
+                                                <h5></h5>
+                                            </div>
+                                            <h6>Sec</h6>
+                                        </div>
                                     </li>
                                 </ul>
-                                <span class="review">23 Customer Review</span>
-                            </div>
-                        </div>
-
-                        <div class="product-contain">
-                            <p>{{ single_product.description }}</p>
-                        </div>
-
-                        <div class="product-package">
-                            <div class="product-title">
-                                <h4>Weight</h4>
-                            </div>
-                            <ul class="select-package">
-                                <li>
-                                    <a href="javascript:void(0)" class="active">1/2 KG</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">1 KG</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">1.5 KG</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Red Roses</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">With Pink Roses</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="time deal-timer product-deal-timer mx-md-0 mx-auto" id="clockdiv-1" data-hours="1"
-                            data-minutes="2" data-seconds="3">
-                            <div class="product-title">
-                                <h4>Hurry up! Sales Ends In</h4>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="counter d-block">
-                                        <div class="days d-block">
-                                            <h5></h5>
-                                        </div>
-                                        <h6>Days</h6>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="counter d-block">
-                                        <div class="hours d-block">
-                                            <h5></h5>
-                                        </div>
-                                        <h6>Hours</h6>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="counter d-block">
-                                        <div class="minutes d-block">
-                                            <h5></h5>
-                                        </div>
-                                        <h6>Min</h6>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="counter d-block">
-                                        <div class="seconds d-block">
-                                            <h5></h5>
-                                        </div>
-                                        <h6>Sec</h6>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="note-box product-package">
-                            <div class="cart_qty qty-box product-qty">
-                                <!--<div class="input-group">
-                                    <button type="button" class="qty-right-plus" data-type="plus" data-field="">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                    <input class="form-control input-number qty-input" type="text" name="quantity"
-                                        value="0">
-                                    <button type="button" class="qty-left-minus" data-type="minus" data-field="">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>-->
                             </div>
 
-                            {% if single_product.stock <= 0 %}
-                                <h2 class="text-danger">Out of Stock</h2>
-                            {% else %}
-                                {% if in_cart %}
-                                <button disabled
-                                class="btn btn-md bg-success cart-button text-white w-100">Added To Cart</button>
-                                <button onclick="location.href = '{% url 'cart' %}';"
-                                class="btn btn-md bg-dark cart-button text-white w-100">View Cart</button>
+                            <div class="note-box product-package">
+                                <div class="cart_qty qty-box product-qty">
+                                    <!--<div class="input-group">
+                                        <button type="button" class="qty-right-plus" data-type="plus" data-field="">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                        <input class="form-control input-number qty-input" type="text" name="quantity"
+                                            value="0">
+                                        <button type="button" class="qty-left-minus" data-type="minus" data-field="">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>-->
+                                </div>
+
+                                {% if single_product.stock <= 0 %}
+                                    <h2 class="text-danger">Out of Stock</h2>
                                 {% else %}
-                                <button onclick="location.href = '{% url 'add_cart' single_product.id %}';"
-                                    class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart</button>
+                                    <button type="submit"
+                                        class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart</button>
                                 {% endif %}
-                            {% endif %}
-                        </div>
-
-                        <div class="buy-box">
-                            <a href="wishlist.html">
-                                <i data-feather="heart"></i>
-                                <span>Add To Wishlist</span>
-                            </a>
-
-                            <a href="compare.html">
-                                <i data-feather="shuffle"></i>
-                                <span>Add To Compare</span>
-                            </a>
-                        </div>
-
-                        <div class="pickup-box">
-                            <div class="product-title">
-                                <h4>Store Information</h4>
                             </div>
 
-                            <div class="pickup-detail">
-                                <h4 class="text-content">Lollipop cake chocolate chocolate cake dessert jujubes.
-                                    Shortbread sugar plum dessert powder cookie sweet brownie.</h4>
+                            <div class="buy-box">
+                                <a href="wishlist.html">
+                                    <i data-feather="heart"></i>
+                                    <span>Add To Wishlist</span>
+                                </a>
+
+                                <a href="compare.html">
+                                    <i data-feather="shuffle"></i>
+                                    <span>Add To Compare</span>
+                                </a>
                             </div>
 
-                            <div class="product-info">
-                                <ul class="product-info-list">
-                                    <li>Type : <a href="javascript:void(0)">Black Forest</a></li>
-                                    <li>SKU : <a href="javascript:void(0)">SDFVW65467</a></li>
-                                    <li>MFG : <a href="javascript:void(0)">Jun 4, 2022</a></li>
-                                    <li>Stock : <a href="javascript:void(0)">2 Items Left</a></li>
-                                    <li>Tags : <a href="javascript:void(0)">Cake,</a> <a
-                                            href="javascript:void(0)">Backery</a></li>
+                            <div class="pickup-box">
+                                <div class="product-title">
+                                    <h4>Store Information</h4>
+                                </div>
+
+                                <div class="pickup-detail">
+                                    <h4 class="text-content">Lollipop cake chocolate chocolate cake dessert jujubes.
+                                        Shortbread sugar plum dessert powder cookie sweet brownie.</h4>
+                                </div>
+
+                                <div class="product-info">
+                                    <ul class="product-info-list">
+                                        <li>Type : <a href="javascript:void(0)">Black Forest</a></li>
+                                        <li>SKU : <a href="javascript:void(0)">SDFVW65467</a></li>
+                                        <li>MFG : <a href="javascript:void(0)">Jun 4, 2022</a></li>
+                                        <li>Stock : <a href="javascript:void(0)">2 Items Left</a></li>
+                                        <li>Tags : <a href="javascript:void(0)">Cake,</a> <a
+                                                href="javascript:void(0)">Backery</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="payment-option">
+                                <div class="product-title">
+                                    <h4>Guaranteed Safe Checkout</h4>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <img src="{% static 'assets/images/product/payment/1.svg' %}" class="blur-up lazyload"
+                                                alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <img src="{% static 'assets/images/product/payment/2.svg' %}" class="blur-up lazyload"
+                                                alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <img src="{% static 'assets/images/product/payment/3.svg' %}" class="blur-up lazyload"
+                                                alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <img src="{% static 'assets/images/product/payment/4.svg' %}" class="blur-up lazyload"
+                                                alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <img src="{% static 'assets/images/product/payment/5.svg' %}" class="blur-up lazyload"
+                                                alt="">
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-
-                        <div class="payment-option">
-                            <div class="product-title">
-                                <h4>Guaranteed Safe Checkout</h4>
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="{% static 'assets/images/product/payment/1.svg' %}" class="blur-up lazyload"
-                                            alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="{% static 'assets/images/product/payment/2.svg' %}" class="blur-up lazyload"
-                                            alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="{% static 'assets/images/product/payment/3.svg' %}" class="blur-up lazyload"
-                                            alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="{% static 'assets/images/product/payment/4.svg' %}" class="blur-up lazyload"
-                                            alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="{% static 'assets/images/product/payment/5.svg' %}" class="blur-up lazyload"
-                                            alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div class="col-12">
@@ -1753,6 +1750,9 @@
     <!-- Tap to top and theme setting button end -->
 
     <!-- Sticky Cart Box Start -->
+    {% if in_cart %}
+
+    {% else %}
     <div class="sticky-bottom-cart">
         <div class="container-fluid-lg">
             <div class="row">
@@ -1799,6 +1799,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
     <!-- Sticky Cart Box End -->
 
     <!-- Review Modal Start -->

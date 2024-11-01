@@ -72,11 +72,14 @@
                                                             <a href="{{ cart_item.product.get_url }}">{{ cart_item.product.product_name }}</a>
                                                         </li>
 
-                                                        <li class="text-content"><span class="text-title">Sold
-                                                                By:</span> Basket</li>
-
-                                                        <li class="text-content"><span
-                                                                class="text-title">Quantity</span> - 750 g</li>
+                                                        <li class="text-content"><p class="text-muted small">
+                                                            {% if cart_item.variations.all %}
+                                                                {% for item in cart_item.variations.all %}
+                                                                    {{ item.variation_category | capfirst }} : 
+                                                                    {{ item.variation_value | capfirst }} <br>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                            </p> </li>
 
                                                     </ul>
                                                 </div>
@@ -94,18 +97,24 @@
                                             <div class="quantity-price">
                                                 <div class="cart_qty">
                                                     <div class="input-group">
-                                                        <button onclick="location.href='{% url 'remove_cart' cart_item.product.id %}';" 
+                                                        <button onclick="location.href='{% url 'remove_cart' cart_item.product.id cart_item.id %}';" 
                                                         type="button" class="btn qty-left-minus"
                                                             data-type="minus" data-field="">
                                                             <i class="fa fa-minus ms-0"></i>
                                                         </button>
                                                         <input class="form-control input-number qty-input" type="text"
                                                             name="quantity" value="{{ cart_item.quantity }}">
-                                                        <button onclick="location.href='{% url 'add_cart' cart_item.product.id %}';" 
-                                                            type="button" class="btn qty-right-plus"
-                                                            data-type="plus" data-field="">
-                                                            <i class="fa fa-plus ms-0"></i>
+                                                        <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
+                                                            {% csrf_token %}
+                                                            {% for item in cart_item.variations.all %}
+                                                            <input name="{{ item.variation_category | lower }}" value="{{ item.variation_value |capfirst }}"
+                                                            class="form-control input-number qty-input" type="hidden">
+                                                            {% endfor %}
+                                                            <button type="submit" class="btn qty-right-plus" 
+                                                                data-type="plus" data-field="">
+                                                                <i class="fa fa-plus ms-0"></i>
                                                         </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,7 +128,9 @@
                                         <td class="save-remove">
                                             <h4 class="table-title text-content">Action</h4>
                                             <a class="save notifi-wishlist" href="javascript:void(0)">Save for later</a>
-                                            <a class="remove close_button" href="{% url 'remove_cart_item' cart_item.product.id %}">Remove</a>
+                                            <a class="remove close_button" 
+                                                href="{% url 'remove_cart' cart_item.product_id cart_item.id %}"
+                                                >Remove</a>
                                         </td>
                                     </tr>
                                     {% endfor %}
