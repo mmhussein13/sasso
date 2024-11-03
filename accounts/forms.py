@@ -3,11 +3,11 @@ from .models import Account
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Enter password',
+        'placeholder': ' ',
         'class': 'form-control',
     }))
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Confirm password',
+        'placeholder': ' ',
         'class': 'form-control',
     }))
 
@@ -32,10 +32,10 @@ class RegistrationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         placeholder_map = {
-            'first_name': 'Enter first name',
-            'last_name': 'Enter last name',
-            'email': 'Enter your email',
-            'phone_number': 'Enter phone number',
+            'first_name': ' ',
+            'last_name': ' ',
+            'email': ' ',
+            'phone_number': ' ',
         }
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control border-0'

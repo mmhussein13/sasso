@@ -211,8 +211,8 @@
                                                                 <a href="{{ cart_item.product.get_url }}">
                                                                     <h5>{{ cart_item.product.product_name }}</h5>
                                                                 </a>
-                                                                <h6><span>1 x</span> UGX {{ cart_item.product.price }}</h6>
-                                                                <button class="close-button close_button">
+                                                                <h6><span>{{ cart_item.quantity }} x</span> UGX {{ cart_item.product.price }}</h6>
+                                                                <button onclick="location.href = '{% url 'remove_cart' cart_item.product_id cart_item.id %}';" class="close-button close_button">
                                                                     <i class="fa-solid fa-xmark"></i>
                                                                 </button>
                                                             </div>
@@ -247,6 +247,8 @@
                                         </div>
 
                                         <div class="onhover-div onhover-div-login">
+                                            {% if user.id is None %}
+                                            <small>Welcome guest...!</small>
                                             <ul class="user-box-name">
                                                 <li class="product-box-contain">
                                                     <i></i>
@@ -260,6 +262,19 @@
                                                 <li class="product-box-contain">
                                                     <a href="forgot.html">Forgot Password</a>
                                                 </li>
+                                                {% else %}
+                                                <small>Welcome {{ user.first_name | capfirst }}</small>
+                                                <ul class="user-box-name">
+                                                    <li class="product-box-contain">
+                                                        <i></i>
+                                                        <a href="{% url 'dashboard' %}">Dashboard</a>
+                                                    </li>
+    
+                                                    <li class="product-box-contain">
+                                                        <a href="{% url 'logout' %}">Logout</a>
+                                                    </li>
+    
+                                                {% endif %}
                                             </ul>
                                         </div>
                                     </li>
