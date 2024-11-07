@@ -635,14 +635,16 @@
                             </ul>
                         </div>
 
-                        <button type="submit" name="submit" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">Place Order</button>
+                        <button name="submit" type="submit"
+                        class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">
+                                        Place Order</button>
                         <button onclick="location.href = '{% url 'store' %}';"
                         class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">
                                         <i class="fa-solid fa-arrow-left-long"></i>Return To Shopping</button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </form>
         </div>
     </section>
     <!-- Checkout section End -->

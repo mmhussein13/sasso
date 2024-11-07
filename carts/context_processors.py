@@ -9,10 +9,10 @@ from .views import _cart_id
 def counter(request):
     cart_count = 0
     cart_items = []
-    
+
     if 'admin' in request.path:
         return {}
-    
+
     try:
         # For authenticated users
         if request.user.is_authenticated:

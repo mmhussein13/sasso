@@ -129,7 +129,7 @@
                                             <h4 class="table-title text-content">Action</h4>
                                             <a class="save notifi-wishlist" href="javascript:void(0)">Save for later</a>
                                             <a class="remove close_button" 
-                                                href="{% url 'remove_cart' cart_item.product_id cart_item.id %}"
+                                                href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}"
                                                 >Remove</a>
                                         </td>
                                     </tr>
@@ -187,8 +187,8 @@
                         <div class="button-group cart-button">
                             <ul>
                                 <li>
-                                    <button onclick="location.href = '{% url 'checkout' %};"
-                                        class="btn btn-animation proceed-btn fw-bold">Process To Checkout</button>
+                                    <button onclick="location.href = '{% url 'checkout' %}';"
+                                        class="btn btn-animation proceed-btn fw-bold">Proceed To Checkout</button>
                                 </li>
 
                                 <li>
