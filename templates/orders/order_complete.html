@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Breadcrumb Section Start -->
+<section class="breadcrumb-section pt-0">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-contain breadcrumb-order">
+                    <div class="order-box">
+                        <div class="order-image">
+                            <div class="checkmark">
+                                <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                                    </path>
+                                </svg>
+                                <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                                    </path>
+                                </svg>
+                                <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                                    </path>
+                                </svg>
+                                <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                                    </path>
+                                </svg>
+                                <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                                    </path>
+                                </svg>
+                                <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                                    </path>
+                                </svg>
+                                <svg class="checkmark__check" height="36" viewBox="0 0 48 36" width="48"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M47.248 3.9L43.906.667a2.428 2.428 0 0 0-3.344 0l-23.63 23.09-9.554-9.338a2.432 2.432 0 0 0-3.345 0L.692 17.654a2.236 2.236 0 0 0 .002 3.233l14.567 14.175c.926.894 2.42.894 3.342.01L47.248 7.128c.922-.89.922-2.34 0-3.23">
+                                    </path>
+                                </svg>
+                                <svg class="checkmark__background" height="115" viewBox="0 0 120 115" width="120"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M107.332 72.938c-1.798 5.557 4.564 15.334 1.21 19.96-3.387 4.674-14.646 1.605-19.298 5.003-4.61 3.368-5.163 15.074-10.695 16.878-5.344 1.743-12.628-7.35-18.545-7.35-5.922 0-13.206 9.088-18.543 7.345-5.538-1.804-6.09-13.515-10.696-16.877-4.657-3.398-15.91-.334-19.297-5.002-3.356-4.627 3.006-14.404 1.208-19.962C10.93 67.576 0 63.442 0 57.5c0-5.943 10.93-10.076 12.668-15.438 1.798-5.557-4.564-15.334-1.21-19.96 3.387-4.674 14.646-1.605 19.298-5.003C35.366 13.73 35.92 2.025 41.45.22c5.344-1.743 12.628 7.35 18.545 7.35 5.922 0 13.206-9.088 18.543-7.345 5.538 1.804 6.09 13.515 10.696 16.877 4.657 3.398 15.91.334 19.297 5.002 3.356 4.627-3.006 14.404-1.208 19.962C109.07 47.424 120 51.562 120 57.5c0 5.943-10.93 10.076-12.668 15.438z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="order-contain">
+                            <h3 class="theme-color">Payment Successfull</h3>
+                            <h5 class="text-content">Your Payment Is Successfull And Your Order Is On The Way</h5>
+                            <h6>Transaction ID: {{ transID }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+
+<!-- Invoice 1 - Bootstrap Brain Component -->
+<section class="py-3 py-md-5 cart-section section-b-space">
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-9 col-xl-8 col-xxl-7">
+        <div class="row gy-3 mb-3">
+            <div class="col-6">
+            <h2 class="text-uppercase text-endx m-0">Invoice</h2>
+            </div>
+            <div class="col-6">
+            <a class="d-block text-end" href="#!">
+                <img src="{% static '/assets/images/logo/9.png' %}" class="img-fluid" alt="BootstrapBrain Logo" width="135" height="44">
+            </a>
+            </div>
+            <div class="col-12">
+            <h4>From</h4>
+            <address>
+                <strong>Southnest Farm</strong><br>
+                Kampala<br>
+                Uganda<br>
+                Phone: +256 743 093516<br>
+                Email: info@southnestfarm.com
+            </address>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12 col-sm-6 col-md-8">
+            <h4>Bill To</h4>
+            <address>
+                <strong>{{ order.full_name }}</strong><br>
+                {{ order.full_address }},<br>
+                {{order.city}},<br>
+                {{order.state}},<br>
+                {{order.country}}.<br>
+                Phone: {{order.phone_number}}<br>
+                Email: {{order.email}}
+            </address>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+            <h4 class="row">
+                <span class="col-6">Invoice #</span>
+                <span class="col-6 text-sm-end">INT-001</span>
+            </h4>
+            <div class="row">
+                <span class="col-6">Account</span>
+                <span class="col-6 text-sm-end">786-54984</span>
+                <span class="col-6">Order ID</span>
+                <span class="col-6 text-sm-end"># {{ order_number }}</span>
+                <span class="col-6">Invoice Date</span>
+                <span class="col-6 text-sm-end">{{ order.created_at }}</span>
+                <span class="col-6">Status</span>
+                <span class="col-6 text-sm-end">{{ payment.status }}</span>
+            </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col" class="text-uppercase">Qty</th>
+                    <th scope="col" class="text-uppercase">Product</th>
+                    <th scope="col" class="text-uppercase text-end"></th>
+                    <th scope="col" class="text-uppercase text-end">Total</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for item in ordered_products %}
+                    <tr>
+                    <th scope="row">{{ item.quantity }}</th>
+                    <td>{{ item.product.product_name }}<br>
+                        <small>
+                            {% if item.variations.all %}
+                                {% for i in item.variations.all %}
+                                    {{ i.variation_category | capfirst }} : {{ i.variation_value |capfirst }}
+                                {% endfor %}
+                            {% endif %}
+                        </small>
+                    </td>
+                    
+                    <td class="text-end"></td>
+                    <td class="text-end">{{ item.product_price }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3" class="text-end">Subtotal</td>
+                        <td class="text-end">UGX {{ subtotal }}</td>
+                        </tr>
+                        <tr>
+                        <td colspan="3" class="text-end">VAT 18%</td>
+                        <td class="text-end">UGX {{ order.tax }}</td>
+                        </tr>
+                        <tr>
+                        <td colspan="3" class="text-end">Shipping</td>
+                        <td class="text-end"> </td>
+                        </tr>
+                        <tr>
+                        <th scope="row" colspan="3" class="text-uppercase text-end">Grand Total</th>
+                        <td class="text-end">UGX {{ order.order_total }}</td>
+                        </tr>
+                </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary mb-3">Download Invoice</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+{% endblock content %}
