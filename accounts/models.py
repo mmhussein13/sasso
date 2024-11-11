@@ -43,6 +43,8 @@ class Account(AbstractBaseUser):
     username        = models.CharField(max_length=50, unique=True)
     email           = models.EmailField(max_length=100, unique=True)
     phone_number    = models.CharField(max_length=50)
+    profile_image   = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+
 
     #required fields
     date_joined     = models.DateTimeField(auto_now_add=True)
@@ -57,6 +59,9 @@ class Account(AbstractBaseUser):
     REQUIRED_FIELDS = ['username','first_name', 'last_name']
 
     objects         = MyAccountManager()
+
+    def full_name(self):
+        return f'{self.first_name} {self.last_name} '
 
     def __str__(self):
         return str(self.email)

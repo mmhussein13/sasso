@@ -48,7 +48,7 @@
                         <div class="profile-contain">
                             <div class="profile-image">
                                 <div class="position-relative">
-                                    <img src="{% static 'assets/images/inner-page/user/1.jpg' %}"
+                                    <img src="{{ user.profile_image.url }}"
                                         class="blur-up lazyload update_img" alt="">
                                     <div class="cover-icon">
                                         <i class="fa-solid fa-pen">
@@ -1445,7 +1445,7 @@
                                     <h2>My Profile</h2>
                                     <span class="title-leaf">
                                         <svg class="icon-width bg-gray">
-                                            <use xlink:href="{% static 'assets/svg/leaf.svg#leaf' %}"></use>
+                                            <use xlink:href="{% static 'assets/svg/leaf.svg' %}#leaf"></use>
                                         </svg>
                                     </span>
                                 </div>

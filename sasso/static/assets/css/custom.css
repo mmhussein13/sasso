@@ -1,0 +1,122 @@
+/* Hide radial button */
+.rate > input {
+    display: none;
+}
+
+.rate {
+    display: inline-block;
+    border: 0;
+}
+
+.rate > label {
+    float: right;
+    color: #ffd700; /* Outline color for the stars (gold) */
+}
+
+/* Display the stars */
+.rate > label:before {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-family: 'FontAwesome';
+    content: "\f005";
+    margin: 0;
+    padding: 0.3rem 0.2rem;
+    cursor: pointer;
+}
+
+/* Half stars */
+.rate .half:before {
+    content: "\f089";
+    position: absolute;
+    padding-right: 0;
+}
+
+/* Clicked and hover effect */
+input:checked ~ label, label:hover ~ label {
+    color: #ffb503;
+}
+
+/* Hover hightlight */
+input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label,
+label:hover ~ input:checked ~ label {
+    color: #cc9000;
+}
+
+
+
+/* Add border and shadow for a "paper" look  on order_complete page after payment*/
+.invoice-paper {
+    background-color: #fdfdfd; /* Slightly off-white to mimic real paper */
+    padding: 2rem;
+    border: 1px solid #e0e0e0; /* Light gray border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 12px 24px rgba(0, 0, 0, 0.1); /* Soft shadows */
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 1.5rem auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Optional: Subtle paper texture background */
+.invoice-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url("{% static 'assets/images/white_paper_texture.png' %}");
+    background-size: 5px 5px;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* Spacing between invoice content and buttons */
+.invoice-paper + .row {
+    margin-top: 1rem;
+}
+
+
+/* Optional: Add a paper texture background */
+.invoice-wrapper {
+    background-image: url("{% static 'assets/images/white_paper_texture.png' %}"); /* Path to your texture image */
+    background-size: cover; /* Cover the entire area */
+}
+
+
+/* Add CSS to ensure only the invoice section is printed and hide the rest: */
+/* Print styling */
+@media print {
+    /* Hide elements that shouldn't appear in print */
+    .no-print {
+        display: none !important;
+    }
+
+    /* Adjust table and layout for print view */
+    .cart-section {
+        padding: 0;
+        margin: 0;
+        font-size: 12px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    /* Optional: Page break rules */
+    .cart-section, .table, .table tr {
+        page-break-inside: avoid;
+    }
+}
+
+
+/* Style for gold-colored stars */
+.gold-star {
+    color: #ffb503;
+}

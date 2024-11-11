@@ -81,118 +81,181 @@
 <!-- Invoice 1 - Bootstrap Brain Component -->
 <section class="py-3 py-md-5 cart-section section-b-space">
     <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-9 col-xl-8 col-xxl-7">
-        <div class="row gy-3 mb-3">
-            <div class="col-6">
-            <h2 class="text-uppercase text-endx m-0">Invoice</h2>
-            </div>
-            <div class="col-6">
-            <a class="d-block text-end" href="#!">
-                <img src="{% static '/assets/images/logo/9.png' %}" class="img-fluid" alt="BootstrapBrain Logo" width="135" height="44">
-            </a>
-            </div>
-            <div class="col-12">
-            <h4>From</h4>
-            <address>
-                <strong>Southnest Farm</strong><br>
-                Kampala<br>
-                Uganda<br>
-                Phone: +256 743 093516<br>
-                Email: info@southnestfarm.com
-            </address>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 col-sm-6 col-md-8">
-            <h4>Bill To</h4>
-            <address>
-                <strong>{{ order.full_name }}</strong><br>
-                {{ order.full_address }},<br>
-                {{order.city}},<br>
-                {{order.state}},<br>
-                {{order.country}}.<br>
-                Phone: {{order.phone_number}}<br>
-                Email: {{order.email}}
-            </address>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4">
-            <h4 class="row">
-                <span class="col-6">Invoice #</span>
-                <span class="col-6 text-sm-end">INT-001</span>
-            </h4>
-            <div class="row">
-                <span class="col-6">Account</span>
-                <span class="col-6 text-sm-end">786-54984</span>
-                <span class="col-6">Order ID</span>
-                <span class="col-6 text-sm-end"># {{ order_number }}</span>
-                <span class="col-6">Invoice Date</span>
-                <span class="col-6 text-sm-end">{{ order.created_at }}</span>
-                <span class="col-6">Status</span>
-                <span class="col-6 text-sm-end">{{ payment.status }}</span>
-            </div>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                <thead>
-                    <tr>
-                    <th scope="col" class="text-uppercase">Qty</th>
-                    <th scope="col" class="text-uppercase">Product</th>
-                    <th scope="col" class="text-uppercase text-end"></th>
-                    <th scope="col" class="text-uppercase text-end">Total</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    {% for item in ordered_products %}
-                    <tr>
-                    <th scope="row">{{ item.quantity }}</th>
-                    <td>{{ item.product.product_name }}<br>
-                        <small>
-                            {% if item.variations.all %}
-                                {% for i in item.variations.all %}
-                                    {{ i.variation_category | capfirst }} : {{ i.variation_value |capfirst }}
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9 col-xl-8 col-xxl-7">
+                <div class="invoice-paper">
+                    <div class="row gy-3 mb-3">
+                        <div class="col-6">
+                        <h2 class="text-uppercase text-endx m-0">Invoice</h2>
+                        </div>
+                        <div class="col-6">
+                        <a class="d-block text-end" href="#!">
+                            <img src="{% static '/assets/images/logo/9.png' %}" class="img-fluid" alt="BootstrapBrain Logo" width="135" height="44">
+                        </a>
+                        </div>
+                        <div class="col-12">
+                        <h4>From</h4>
+                        <address>
+                            <strong>Southnest Farm</strong><br>
+                            Kampala<br>
+                            Uganda<br>
+                            Phone: +256 743 093516<br>
+                            Email: info@southnestfarm.com
+                        </address>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12 col-sm-6 col-md-8">
+                        <h4>Bill To</h4>
+                        <address>
+                            <strong>{{ order.full_name }}</strong><br>
+                            {{ order.full_address }},<br>
+                            {{order.city}},<br>
+                            {{order.state}},<br>
+                            {{order.country}}.<br>
+                            Phone: {{order.phone_number}}<br>
+                            Email: {{order.email}}
+                        </address>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4">
+                        <h4 class="row">
+                            <span class="col-6">Invoice #</span>
+                            <span class="col-6 text-sm-end">INT-001</span>
+                        </h4>
+                        <div class="row">
+                            <span class="col-6">Account</span>
+                            <span class="col-6 text-sm-end">786-54984</span>
+                            <span class="col-6">Order ID</span>
+                            <span class="col-6 text-sm-end"># {{ order_number }}</span>
+                            <span class="col-6">Invoice Date</span>
+                            <span class="col-6 text-sm-end">{{ order.created_at }}</span>
+                            <span class="col-6">Status</span>
+                            <span class="col-6 text-sm-end">{{ payment.status }}</span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                <th scope="col" class="text-uppercase">Qty</th>
+                                <th scope="col" class="text-uppercase">Product</th>
+                                <th scope="col" class="text-uppercase text-end"></th>
+                                <th scope="col" class="text-uppercase text-end">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                {% for item in ordered_products %}
+                                <tr>
+                                <th scope="row">{{ item.quantity }}</th>
+                                <td>{{ item.product.product_name }}<br>
+                                    <small>
+                                        {% if item.variations.all %}
+                                            {% for i in item.variations.all %}
+                                                {{ i.variation_category | capfirst }} : {{ i.variation_value |capfirst }} <br>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </small>
+                                </td>
+                                
+                                <td class="text-end"></td>
+                                <td class="text-end">{{ item.product_price }}</td>
+                                </tr>
                                 {% endfor %}
-                            {% endif %}
-                        </small>
-                    </td>
-                    
-                    <td class="text-end"></td>
-                    <td class="text-end">{{ item.product_price }}</td>
-                    </tr>
-                    {% endfor %}
-                    <tr>
-                        <td colspan="3" class="text-end">Subtotal</td>
-                        <td class="text-end">UGX {{ subtotal }}</td>
-                        </tr>
-                        <tr>
-                        <td colspan="3" class="text-end">VAT 18%</td>
-                        <td class="text-end">UGX {{ order.tax }}</td>
-                        </tr>
-                        <tr>
-                        <td colspan="3" class="text-end">Shipping</td>
-                        <td class="text-end"> </td>
-                        </tr>
-                        <tr>
-                        <th scope="row" colspan="3" class="text-uppercase text-end">Grand Total</th>
-                        <td class="text-end">UGX {{ order.order_total }}</td>
-                        </tr>
-                </tbody>
-                </table>
+                                <tr>
+                                    <td colspan="3" class="text-end">Subtotal</td>
+                                    <td class="text-end">UGX {{ subtotal }}</td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="3" class="text-end">VAT 18%</td>
+                                    <td class="text-end">UGX {{ order.tax }}</td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="3" class="text-end">Shipping</td>
+                                    <td class="text-end"> </td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row" colspan="3" class="text-uppercase text-end">Grand Total</th>
+                                    <td class="text-end">UGX {{ order.order_total }}</td>
+                                    </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-12 text-end">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-md fw-bold text-light theme-bg-color me-2" onclick="printInvoice()">Print Invoice</button>
+                        <button type="button" onclick="downloadInvoice()" class="btn btn-md fw-bold text-light theme-bg-color">Download Invoice</button>
+                    </div>
+                </div>
+            </div>
+            
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 text-end">
-            <button type="submit" class="btn btn-primary mb-3">Download Invoice</button>
-            </div>
-        </div>
-        </div>
-    </div>
     </div>
 </section>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+
+<script>
+
+    function printInvoice() {
+        // Select the `.invoice-paper` content
+        const invoiceContent = document.querySelector('.invoice-paper').innerHTML;
+
+        // Create a new window for printing
+        const printWindow = window.open('', '_blank', 'width=800,height=600');
+
+        // Write the content to the new window and add basic styles
+        printWindow.document.open();
+        printWindow.document.write(`
+            <html>
+            <head>
+                <title>Print Invoice</title>
+                <style>
+                    /* Include any styles needed for printing */
+                    body { font-family: Arial, sans-serif; padding: 20px; }
+                    .invoice-paper { max-width: 800px; margin: auto; }
+                    table { width: 100%; border-collapse: collapse; }
+                    table, th, td { border: 1px solid #ddd; padding: 8px; }
+                    th { background-color: #f2f2f2; }
+                    .text-end { text-align: right; }
+                    .text-uppercase { text-transform: uppercase; }
+                </style>
+            </head>
+            <body onload="window.print(); window.close();">
+                <div class="invoice-paper">
+                    ${invoiceContent}
+                </div>
+            </body>
+            </html>
+        `);
+        printWindow.document.close();
+    }
+
+    function downloadInvoice() {
+        // Select the `.invoice-paper` content
+        const invoiceContent = document.querySelector('.invoice-paper');
+
+        // Set up options for the PDF
+        const options = {
+            margin:       0.5,                // Set margins
+            filename:     'Invoice.pdf',      // Name of the PDF file
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },       // Scale up for better resolution
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Use html2pdf to generate the PDF
+        html2pdf().from(invoiceContent).set(options).save();
+    }
+
+</script>
 
 {% endblock content %}
