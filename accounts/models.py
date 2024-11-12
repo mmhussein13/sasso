@@ -43,7 +43,7 @@ class Account(AbstractBaseUser):
     username        = models.CharField(max_length=50, unique=True)
     email           = models.EmailField(max_length=100, unique=True)
     phone_number    = models.CharField(max_length=50)
-    profile_image   = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+    
 
 
     #required fields
@@ -61,7 +61,7 @@ class Account(AbstractBaseUser):
     objects         = MyAccountManager()
 
     def full_name(self):
-        return f'{self.first_name} {self.last_name} '
+        return f'{self.first_name} {self.last_name}'
 
     def __str__(self):
         return str(self.email)
@@ -71,3 +71,26 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, add_label):
         return True
+
+
+class UserProfile(models.Model):
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other'),
+    )
+
+    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+    address_line_1 = models.CharField(max_length=100, blank=True)
+    address_line_2 = models.CharField(max_length=100, blank=True)
+    profile_image = models.ImageField(upload_to='userprofile/', null=True, blank=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
+    city = models.CharField(blank=True, max_length=20)
+    state = models.CharField(blank=True, max_length=20)
+    country = models.CharField(blank=True, max_length=20)
+
+    def __str__(self):
+        return self.user.first_name
+
+    def full_address(self):
+        return f'{self.address_line_1} {self.address_line_2}'

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Account
+from .models import Account, UserProfile
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
@@ -30,7 +30,7 @@ class RegistrationForm(forms.ModelForm):
         return cleaned_data
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super(RegistrationForm, self).__init__(*args, **kwargs)
         placeholder_map = {
             'first_name': ' ',
             'last_name': ' ',
@@ -41,3 +41,34 @@ class RegistrationForm(forms.ModelForm):
             self.fields[field].widget.attrs['class'] = 'form-control border-0'
             if field in placeholder_map:
                 self.fields[field].widget.attrs['placeholder'] = placeholder_map[field]
+
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ('first_name', 'last_name', 'phone_number', 'email')
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
+
+class UserProfileForm(forms.ModelForm):
+    profile_image = forms.ImageField(required=False, error_messages={'invalid':("Image files only")}, widget=forms.FileInput)
+    class Meta:
+        model = UserProfile
+        fields = (
+            'address_line_1',
+            'address_line_2',
+            'city',
+            'state',
+            'gender',
+            'country',
+            'profile_image'
+        )
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
