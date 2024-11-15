@@ -115,13 +115,13 @@
                                     <div class="col-xxl-6">
                                         <div class="dashboard-content-title">
                                             <h4>Contact Information <a href="javascript:void(0)"
-                                                    data-bs-toggle="modal" data-bs-target="#editProfile">Edit</a>
+                                                    data-bs-toggle="modal" data-bs-target="#editProfile1"></a>
                                             </h4>
                                         </div>
                                         <div class="dashboard-detail">
                                             <h6 class="text-content">{{ user.first_name }} {{ user.last_name }}</h6>
                                             <h6 class="text-content">{{ user.email }}</h6>
-                                            <a href="javascript:void(0)">Change Password</a>
+                                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#change_password">Change Password</a>
                                         </div>
                                     </div>
 
@@ -2145,10 +2145,10 @@
 <!-- User Dashboard Section End -->
 
 <!-- Edit Profile Start -->
-<div class="modal fade theme-modal" id="editProfile" tabindex="-1">
+<div class="modal fade theme-modal" id="change_password" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
-            <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
+            <form action="{% url 'change_password' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel2">Edit Profile</h5>
@@ -2158,64 +2158,29 @@
                 </div>
                 <div class="modal-body">
                     <div class="row g-4">
-                        <div class="col-6">
-                            <div class="form-floating theme-form-floating">
-                                {{ user_form.first_name }}
-                                <label for="{{ user_form.first_name.id_for_label }}">First Name</label>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-floating theme-form-floating">
-                                {{ user_form.last_name }}
-                                <label for="{{ user_form.last_name.id_for_label }}">Last Name</label>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-floating theme-form-floating">
-                                {{ user_form.email }}
-                                <label for="{{ user_form.email.id_for_label }}">Email Address</label>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-floating theme-form-floating">
-                                {{ user_form.phone_number }}
-                                <label for="{{ user_form.phone_number.id_for_label }}">Phone Number</label>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-floating theme-form-floating">
-                                {{ profile_form.gender }}
-                                <label for="{{ profile_form.gender.id_for_label }}">Gender</label>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-floating theme-form-floating">
-                                {{ profile_form.profile_image }}
-                                <label for="{{ profile_form.profile_image.id_for_label }}">Profile Picture</label>
-                            </div>
-                        </div>
+                        
+
                         <div class="col-12">
                             <div class="form-floating theme-form-floating">
-                                {{ profile_form.address_line_1 }}
-                                <label for="{{ profile_form.address_line_1.id_for_label }}">Address Line 1</label>
+                                <input type="password" class="form-control" id="current_password"
+                                        value="Enter Current Password" required name="current_password">
+                                <label for="current_password">Current Password</label>
                             </div>
                         </div>
+
                         <div class="col-12">
                             <div class="form-floating theme-form-floating">
-                                {{ profile_form.address_line_2 }}
-                                <label for="{{ profile_form.address_line_2.id_for_label }}">Address Line 2</label>
+                                <input type="password" class="form-control" id="new_password"
+                                        value="Enter New Password" required name="new_password">
+                                <label for="new_password">Create New Password</label>
                             </div>
                         </div>
-                        <div class="col-6">
+
+                        <div class="col-12">
                             <div class="form-floating theme-form-floating">
-                                {{ profile_form.country }}
-                                <label for="{{ profile_form.country.id_for_label }}">Country</label>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-floating theme-form-floating">
-                                {{ profile_form.city }}
-                                <label for="{{ profile_form.city.id_for_label }}">City</label>
+                                <input type="password" class="form-control" id="confirm_password"
+                                        value="Confirm Password" required name="confirm_password">
+                                <label for="confirm_password">Confirm Password</label>
                             </div>
                         </div>
                     </div>

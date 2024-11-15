@@ -645,7 +645,7 @@
                                                     <li>
                                                         <div class="size-box">
                                                             <h6 class="text-content">Order # : </h6>
-                                                            <h5>{{ order.order_number }}</h5>
+                                                            <h5><a href="{% url 'order_detail' order.order_number %}">{{ order.order_number }} </a></h5>
                                                         </div>
                                                     </li>
 

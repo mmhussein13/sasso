@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^o+g&@^8*6dj63c&ulxh$yk1fj@(ma%f+^51-00upg&h1$ecva'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -70,7 +71,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'category.context_processors.menu_links',
                 'carts.context_processors.counter',
-                'accounts.context_processors.user_profile_image', 
             ],
         },
     },
@@ -143,15 +143,15 @@ MESSAGE_TAGS = {
 
 
 # SMTP CONFIGURATION
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Replace with your SMTP server
-EMAIL_PORT = 587  # Usually 587 for TLS or 465 for SSL
-EMAIL_USE_TLS = True  # Use True for TLS and False for SSL
-EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'mmhussein13@gmail.com'  # Your email
-EMAIL_HOST_PASSWORD = 'hvnq ihuy jpnh woxg'  # Your email password
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=False, cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
 # Password reset email configurations
-PASSWORD_RESET_TIMEOUT = 1800  # Link expires in 30 minutes
-DEFAULT_FROM_EMAIL = 'Southnest Support <support@southnest.com>'
+PASSWORD_RESET_TIMEOUT = config('PASSWORD_RESET_TIMEOUT', cast=int)
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
